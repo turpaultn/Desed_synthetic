@@ -1,5 +1,5 @@
 # Desed_synthetic
-Synthetic data of Desed dataset (used in DCASE 2019 task 4).
+Synthetic data of Desed dataset (used in DCASE 2019 task 4), and creation of new mixtures.
 
 ## Description
 This repository gives the information and the code to download the data, reproduce the synthetic dataset used in 
@@ -9,7 +9,7 @@ DCASE 2019 task 4 and examples of how you can create your own data
 You can find information about this dataset in this paper: [link](https://hal.inria.fr/hal-02160855).
 The evaluation part was submitted to ICASSP and will be updated later.
 
-The dataset is available here: **[link](link)**
+The dataset is available here: **[zenodo link](https://zenodo.org/record/3550599)**
 
 * Background files are extracted from SINS [[2]](#2), MUSAN [[3]](#3) or Youtube and have been selected because they 
 contain a very low amount of our sound event classes.
@@ -17,7 +17,7 @@ contain a very low amount of our sound event classes.
 and segmented to remove silences.
 
 
-**Desed_synthetic for DCASE 2019 task 4:**
+#### Desed_synthetic for DCASE 2019 task 4:
 10 second audio clips generated with [Scaper](https://github.com/justinsalamon/scaper).
 
 **Training**:
@@ -26,14 +26,17 @@ There are 2060 background files from SINS and 1009 foreground from Freesound.
 We generated 2045 10s files with a FBSNR between 6dB to 30dB.
 
 **Eval**
-There are 12(Freesound) + 5(Youtube) background files and 314 foreground files.
+There are 12(Freesound) + 5(Youtube) background files and 314 foreground files. 
+Generating different subsets to test robustness against some parameters.
+
 Taking a background sound and multiple foreground sounds and associating them in different conditions:
 * Varying the foreground-background signal to noise ratio (FBSNR).
 * Varying the onsets: Generating foreground sounds only at the beginning, middle or end of the 10 seconds.
 * Using long 'foreground' event classes as background, and short events as foreground. 
 * Degrading the final 10s mixtures.
 
-#### Technical description
+
+### Technical description
 In this repository, you can find:
 * `src/` folder with the code to generate sounds used in DCASE challenge or new ones.
 * `test` fodler (partial testing) 
@@ -81,26 +84,26 @@ dataset root
 *All folder without examples of files contain audio (.wav) files*
 
 ## Download
-Link to the zenodo repo: **[link](link)**
+Link to the zenodo repo: **[zenodo link](https://zenodo.org/record/3550599)**
 
 To download the **training**, there are 2 steps:
 * Run ```python get_background_training.py``` in the `src/` folder. (Background files from SINS [[2]](#2))
-* Download training of the zenodo repo. Corresponding to the 
+* Download `training.tar.gz` of the zenodo repo. Corresponding to the 
 "foreground soundbank" and the JAMS soundscapes used in the DCASE challenge.
 
 To download the **evaluation**:
-* Download eval of the zenodo repo. (used data from MUSAN[[3]](#3), youtube and freesound)
+* Download `eval.tar.gz` of the zenodo repo. (used data from MUSAN[[3]](#3), youtube and freesound)
 Corresponding to the "soundbank" and the "JAMS soundscapes" used in the DCASE challenge.
 
 ## Generating sounds
-###### Desed_synthetic for DCASE 2019 task 4 challenge 
-Data has to be downloaded (see before)
+##### Desed_synthetic for DCASE 2019 task 4 challenge 
+Data has to be downloaded (see above).
 
 * The distorted versions are already in a wav format, because we use XXX tool (in Matlab) 
 to generate them which we still didn't transpose to python.
 * Run ````python generate_wav.py```` in the `src/` folder for the other scenarios.
 
-###### Generate new sounds 
+##### Generate new sounds 
 To generate new sounds, in the same way as the Desed_synthetic dataset, you can use these files:
  * `generate_training.py`, uses `event_occurences_train.json` for co-occurrence of events.
  * `generate_eval_FBSNR.py` generates similar subsets with different foreground-background sound to noise ratio (fbsnr): 30dB, 24dB, 15dB, 0dB.
