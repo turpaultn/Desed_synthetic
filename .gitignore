@@ -1,0 +1,15 @@
+__pycache__/
+.idea/
+.DS_Store
+
+src/tests/generated/
+
+# In the zenodo repo
+training/
+eval/
+*.tar.gz
+license_eval.csv
+license_training.csv
+
+# Other
+create_license.py
